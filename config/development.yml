@@ -1,0 +1,9 @@
+mysql:
+  database: es-demo-development
+  user: root
+  password: password
+
+postgresql:
+  password: password
+  database: es-demo-legacy-development
+  user: es-demo

@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  rails-server:
+    build: ../.
+    container_name: rails-es-demo
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/app
+      - ./log:/app/log
+      - ./tmp/pids:/app/tmp/pids
+      - ./tmp/cache:/app/tmp/cache
+      - ./db:/app/db
+    command: bash -c "rm -df tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    networks:
+      - es-demo-network
+
+  redis:
+    image: redis:latest
+networks:
+  es-demo-network:

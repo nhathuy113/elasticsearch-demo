@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+#      MYSQL_DATABASE: es-demo-development
+#      MYSQL_USER: root
+#      MYSQL_PASSWORD: password
+    restart: always
+    ports:
+      - "6033:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - es-demo-network
+  postgresql:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: secret
+    restart: always
+    ports:
+      - "2345:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - es-demo-network
+
+volumes:
+  mysql_data:
+  postgres_data:
+
+networks:
+  es-demo-network:
